@@ -1,6 +1,27 @@
 README
 ======
 
+GIMP 3 VERSION
+--------------
+
+This fork carries the port of the wavelet denoise plugin to GIMP 3. The
+original plugin by Marco Rossini is at
+https://github.com/mrossini-ethz/gimp-wavelet-denoise and supports GIMP 2.x.
+The port is being offered upstream; until it is merged, this is where it lives.
+
+What is new in the GIMP 3 version (see ChangeLog for details):
+
+- Runs in GIMP 3.0 and newer.
+- 16-bit and floating point images are denoised at full precision. Floating
+  point images keep values above 1.
+- All settings can be passed from scripts, and GIMP remembers the last used
+  ones.
+- Several bug fixes.
+
+For building and installing see the file INSTALL. Please report problems with
+the GIMP 3 version at
+https://github.com/sandbranch/gimp-wavelet-denoise/issues
+
 The wavelet denoise plugin for The GIMP is an algorithm copied and slightly
 altered from the UFRaw program (which inherited the algorithm from dcraw).
 Instead of denoising all RGB channels at once the plugin implementation allows
