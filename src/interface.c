@@ -24,6 +24,8 @@ typedef struct
   GtkWidget *colour_check;
   GtkWidget *channel_labels[4];
   gint channels;
+  /* the displayed channel, not remembered: 0 = all, otherwise channel + 1 */
+  gint preview_channel;
   gboolean compare;
 } dialog_data;
 
@@ -51,6 +53,7 @@ preview_update (GimpPreview * preview, dialog_data * data)
   wavelet_settings settings;
 
   settings_from_config (data->config, &settings);
+  settings.preview_channel = data->preview_channel;
   settings.compare = data->compare;
   denoise (data->drawable, preview, &settings, NULL);
 }
@@ -82,13 +85,12 @@ update_channel_names (dialog_data * data)
 static void
 update_colour_check (dialog_data * data)
 {
-  gint channel;
+  gint channel = data->preview_channel;
 
   if (!data->colour_check)
     return;
 
   /* colour display is only meaningful for single colour channels */
-  g_object_get (data->config, "preview-channel", &channel, NULL);
   gtk_widget_set_sensitive (data->colour_check, channel > 0 && channel < 4);
 }
 
@@ -98,8 +100,9 @@ preview_channel_changed (GtkComboBox * combo, dialog_data * data)
   gint active = gtk_combo_box_get_active (combo);
 
   if (active >= 0)
-    g_object_set (data->config, "preview-channel", active, NULL);
+    data->preview_channel = active;
   update_colour_check (data);
+  gimp_preview_invalidate (GIMP_PREVIEW (data->preview));
 }
 
 static void
@@ -135,7 +138,7 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
   GtkWidget *widget, *box, *button;
   GList *controls = NULL, *radios = NULL;
   gchar *id;
-  gint c, index, preview_channel;
+  gint c, index;
   gboolean run;
 
   data.config = config;
@@ -146,13 +149,8 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
   data.colour_check = NULL;
   data.channel_combo = NULL;
 
-  /* forget a displayed channel the image does not have */
-  g_object_get (config, "preview-channel", &preview_channel, NULL);
-  if (preview_channel > data.channels)
-    {
-      preview_channel = 0;
-      g_object_set (config, "preview-channel", 0, NULL);
-    }
+  /* always start with the preview of all channels */
+  data.preview_channel = 0;
 
   gimp_ui_init (PLUG_IN_BINARY);
 
@@ -265,7 +263,7 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
     {
       update_channel_names (&data);
       gtk_combo_box_set_active (GTK_COMBO_BOX (data.channel_combo),
-				preview_channel);
+				data.preview_channel);
       g_signal_connect (data.channel_combo, "changed",
 			G_CALLBACK (preview_channel_changed), &data);
       update_colour_check (&data);
