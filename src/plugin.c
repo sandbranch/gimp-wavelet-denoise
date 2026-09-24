@@ -147,11 +147,6 @@ wavelet_denoise_create_procedure (GimpPlugIn * plug_in, const gchar * name)
     }
 
   /* dialog state, remembered between runs but not a script argument */
-  gimp_procedure_add_int_aux_argument (procedure, "preview-channel",
-				       _("Preview channel"),
-				       "0 for all channels, otherwise the "
-				       "displayed channel + 1",
-				       0, 4, 0, G_PARAM_READWRITE);
   gimp_procedure_add_boolean_aux_argument (procedure, "preview-in-color",
 					   _("Sho_w in color"),
 					   TT_PREVIEW_SEL_COLOUR,
@@ -182,9 +177,8 @@ settings_from_config (GimpProcedureConfig * config,
     g_object_get (config,
 		  threshold_props[i], &settings->thresholds[i],
 		  low_props[i], &settings->low[i], NULL);
-  g_object_get (config,
-		"preview-channel", &settings->preview_channel,
-		"preview-in-color", &settings->preview_colour, NULL);
+  g_object_get (config, "preview-in-color", &settings->preview_colour, NULL);
+  settings->preview_channel = 0;
   settings->compare = FALSE;
 }
 
