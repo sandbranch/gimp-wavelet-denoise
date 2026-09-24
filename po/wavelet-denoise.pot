@@ -1,18 +1,20 @@
-# Copyright (C) 2008 THE wavelet-denoise'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the wavelet-denoise package.
-# <marco.rossini@gmx.net>, 2008. <carlobaldassi@gmail.com>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: wavelet denoise\n"
+"Project-Id-Version: wavelet-denoise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-24 17:41+0200\n"
-"PO-Revision-Date: 2008-11-13 21:12+0100\n"
-"Last-Translator: Carlo Baldassi <carlobaldassi@gmail.com>\n"
-"Language-Team: Italian\n"
-"Language: it\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/denoise.c:103
@@ -29,12 +31,12 @@ msgstr ""
 #. progress
 #: src/denoise.c:136
 msgid "Wavelet denoising..."
-msgstr "Rimozione del rumore tramite Wavelets..."
+msgstr ""
 
 #. TRANSLATORS: *All* channels (from the preview select frame)
 #: src/interface.c:71
 msgid "All"
-msgstr "Tutti"
+msgstr ""
 
 #: src/interface.c:211
 msgid "Hold to compare"
@@ -42,22 +44,19 @@ msgstr ""
 
 #: src/interface.c:221 src/plugin.c:151
 msgid "Preview channel"
-msgstr "Canale per l'anteprima"
+msgstr ""
 
 #. TRANSLATORS: This is the name of the plugin as it appears in menus, the
 #. interface window title and such
 #: src/messages.h:21
 msgid "Wavelet denoise"
-msgstr "Wavelet denoise"
+msgstr ""
 
 #: src/messages.h:23
 msgid ""
 "This plugin allows the separate denoising of image channels in multiple "
 "color spaces using wavelets."
 msgstr ""
-"Questo plugin permette di rimuovere il rumore dai canali di un'immagine, in "
-"modo indipendente per ogni canale, in diversi spazi colore, usando le "
-"wavelets"
 
 #. Tool-tips
 #: src/messages.h:26
@@ -66,36 +65,28 @@ msgid ""
 "0.0 (none) to 10.0. The threshold is the value below which everything is "
 "considered noise."
 msgstr ""
-"Imposta la soglia per la rimozione del rumore dal canale selezionato, tra "
-"0.0 (nessuna rimozione) e 10.0. La soglia è il valore al di sotto del quale "
-"tutto è considerato rumore."
 
 #: src/messages.h:27
 msgid ""
 "Adjusts the threshold for denoising in a range from 0.0 (none) to 10.0. The "
 "threshold is the value below which everything is considered noise."
 msgstr ""
-"Imposta la soglia per la rimozione del rumore, tra 0.0 (nessuna rimozione) e "
-"10.0. La soglia è il valore al di sotto del quale tutto è considerato rumore."
 
 #: src/messages.h:28
-#, fuzzy
 msgid "Select the image channel to display in the preview."
 msgstr ""
-"Seleziona un canale dell'immagine per modificarne le impostazioni di "
-"rimozione del rumore."
 
 #: src/messages.h:29
 msgid "Display all channels of the image (final image)."
-msgstr "Mostra tutti i canali dell'immagine (immagine finale)."
+msgstr ""
 
 #: src/messages.h:30
 msgid "Display only the selected channel in grayscale mode."
-msgstr "Mostra solo il canale selezionato, in toni di grigio."
+msgstr ""
 
 #: src/messages.h:31
 msgid "Display only the selected channel in color mode."
-msgstr "Mostra solo il canale selezionato, a colori."
+msgstr ""
 
 #: src/messages.h:32
 msgid ""
@@ -104,11 +95,6 @@ msgid ""
 "chroma channels (Cb = blueness, Cr = reddness) that hold the color "
 "information. Note that this choice drastically affects the result."
 msgstr ""
-"Lo spazio colore YCbCr ha un canale di luminanza (Y) che contiene la maggior "
-"parte dell'informazione sui dettagli dell'immagine (come la luminosità e il "
-"contrasto) e due canali di crominanza (Cb = crominanza blu, Cr = crominanza "
-"rossa) che contengono l'informazione cromatica. Si noti che questa opzione "
-"influenza il risultato finale in maniera drastica."
 
 #: src/messages.h:33
 msgid ""
@@ -116,9 +102,6 @@ msgid ""
 "blue. This is the default color model in GIMP. Note that this choice "
 "drastically affects the result."
 msgstr ""
-"Lo spazio colore RGB separa l'immagine in canali per il rosso, il verde e il "
-"blu. Questo è lo spazio colore usato per default in GIMP. Si noti che questa "
-"opzione influenza il risultato finale in maniera drastica."
 
 #: src/messages.h:34
 msgid ""
@@ -126,9 +109,6 @@ msgid ""
 "lightness and color distances are perceptually uniform. Note that this "
 "choice drastically affects the result."
 msgstr ""
-"CIELAB (L*a*b) è uno spazio colore nel quale la crominanza è separata dalla "
-"luminosità e le distaze tra i colori sono percettualmente uniformi. Si noti "
-"che questa opzione influenza il risultato finale in maniera drastica."
 
 #: src/messages.h:35
 msgid ""
@@ -136,21 +116,15 @@ msgid ""
 "thresholding). The higher the softness the more noise remains in the image. "
 "Default is 0.0."
 msgstr ""
-"Questa opzione controlla la gradualità della soglia (permette di passare da "
-"una soglia netta a una sfumata). Più alta è la sfumatura, più rumore resta "
-"nell'immagine. Il valore predefinito è 0.0."
 
 #: src/messages.h:37
-#, fuzzy
 msgid ""
 "Shows the previewed channels without denoising while the button is pressed."
 msgstr ""
-"Tenendo premuto questo pulsante, potete rimuovere temporaneamente le "
-"modifiche al canale selezionato, così da valutarne l'effetto."
 
 #: src/plugin.c:49 src/plugin.c:50 src/plugin.c:51 src/plugin.c:52
 msgid "Alpha"
-msgstr "Alpha"
+msgstr ""
 
 #: src/plugin.c:51
 msgid "Gray"
@@ -192,15 +166,15 @@ msgstr ""
 #. hotkey
 #: src/plugin.c:116
 msgid "_Wavelet denoise ..."
-msgstr "_Wavelet denoise ..."
+msgstr ""
 
 #: src/plugin.c:120
 msgid "Removes noise in the image using wavelets."
-msgstr "Rimuove il rumore da un'immagine usando le wavelets."
+msgstr ""
 
 #: src/plugin.c:126
 msgid "Color _model"
-msgstr "_Spazio colore"
+msgstr ""
 
 #: src/plugin.c:127
 msgid ""
@@ -209,11 +183,11 @@ msgstr ""
 
 #: src/plugin.c:139
 msgid "_Threshold"
-msgstr "_Soglia"
+msgstr ""
 
 #: src/plugin.c:144
 msgid "So_ftness"
-msgstr "_Sfumatura"
+msgstr ""
 
 #: src/plugin.c:156
 msgid "Sho_w in color"
@@ -223,45 +197,3 @@ msgstr ""
 #, c-format
 msgid "Procedure '%s' only works with one drawable."
 msgstr ""
-
-#~ msgid "Resets to the default values."
-#~ msgstr "Reimposta ai valori predefiniti."
-
-#~ msgid "Resets the current channel to the default values."
-#~ msgstr "Reimposta il canale corrente ai valori predefiniti."
-
-#~ msgid "Resets all channels to the default values."
-#~ msgstr "Reimposta tutti i canali ai valori predefiniti."
-
-#~ msgid "Selected (gray)"
-#~ msgstr "Selezionato (grigio)"
-
-#~ msgid "Selected"
-#~ msgstr "Selezionato"
-
-#~ msgid "Selected (color)"
-#~ msgstr "Selezionato (a colori)"
-
-#~ msgid "Channel select"
-#~ msgstr "Selezione del canale"
-
-#~ msgid "Channel settings"
-#~ msgstr "Impostazioni per il canale"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
-
-#~ msgid "Reset channel"
-#~ msgstr "Reimposta canale"
-
-#~ msgid "Reset"
-#~ msgstr "Reimposta"
-
-#~ msgid "Reset all"
-#~ msgstr "Reimposta tutto"
-
-#~ msgid "Marco Rossini"
-#~ msgstr "Marco Rossini"
-
-#~ msgid "Copyright 2008 Marco Rossini"
-#~ msgstr "Copyright 2008 Marco Rossini"
