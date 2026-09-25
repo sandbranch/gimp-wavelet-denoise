@@ -197,8 +197,17 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
 						"preview-in-color", NULL);
 	}
       else
-	box = gimp_procedure_dialog_fill_box_list (dialog, "preview-box",
-						   NULL);
+	{
+	  /* a box without any item would get all arguments, so it holds a
+	     hidden empty label */
+	  GtkWidget *label =
+	    gimp_procedure_dialog_get_label (dialog, "preview-placeholder", "",
+					     FALSE, FALSE);
+	  box = gimp_procedure_dialog_fill_box (dialog, "preview-box",
+						"preview-placeholder", NULL);
+	  gtk_widget_set_no_show_all (label, TRUE);
+	  gtk_widget_hide (label);
+	}
 
       data.channel_combo = gtk_combo_box_text_new ();
       gtk_widget_set_tooltip_text (data.channel_combo, TT_SELECT);
