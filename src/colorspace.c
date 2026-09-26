@@ -23,12 +23,15 @@ srgb2ycbcr (float ** fimg, int size)
   int i;
   float y, cb, cr;
 
+  /* the coefficients are given with enough digits to be the exact
+   * inverse of the ones in ycbcr2srgb (), so that 16-bit and floating
+   * point images come back unchanged where nothing is denoised */
   for (i = 0; i < size; i++) {
     y =   0.2990 * fimg[0][i] + 0.5870 * fimg[1][i] + 0.1140 * fimg[2][i];
-    cb = -0.1687 * fimg[0][i] - 0.3313 * fimg[1][i] + 0.5000 * fimg[2][i]
-         + 0.5;
-    cr =  0.5000 * fimg[0][i] - 0.4187 * fimg[1][i] - 0.0813 * fimg[2][i]
-         + 0.5;
+    cb = -0.16873589 * fimg[0][i] - 0.33126411 * fimg[1][i]
+         + 0.5000 * fimg[2][i] + 0.5;
+    cr =  0.5000 * fimg[0][i] - 0.41868759 * fimg[1][i]
+         - 0.08131241 * fimg[2][i] + 0.5;
     fimg[0][i] = y;
     fimg[1][i] = cb;
     fimg[2][i] = cr;
@@ -60,8 +63,8 @@ ycbcr2srgb (float **fimg, int size, int pc)
 
   for (i = 0; i < size; i++) {
     r = fimg[0][i] + 1.40200 * (fimg[2][i] - 0.5);
-    g = fimg[0][i] - 0.34414 * (fimg[1][i] - 0.5)
-        - 0.71414 * (fimg[2][i] - 0.5);
+    g = fimg[0][i] - 0.34413629 * (fimg[1][i] - 0.5)
+        - 0.71413629 * (fimg[2][i] - 0.5);
     b = fimg[0][i] + 1.77200 * (fimg[1][i] - 0.5);
     fimg[0][i] = r;
     fimg[1][i] = g;
