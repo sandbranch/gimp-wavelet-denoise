@@ -166,9 +166,9 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
   gtk_widget_set_size_request (data.preview, 300, 304);
   g_signal_connect (data.preview, "invalidated", G_CALLBACK (preview_update),
 		    &data);
-  g_signal_connect_swapped (config, "notify",
-			    G_CALLBACK (gimp_preview_invalidate),
-			    data.preview);
+  g_signal_connect_object (config, "notify",
+			   G_CALLBACK (gimp_preview_invalidate), data.preview,
+			   G_CONNECT_SWAPPED);
 
   /* prepare the colour model frame */
   if (data.channels > 2)
@@ -292,6 +292,8 @@ user_interface (GimpProcedure * procedure, GimpProcedureConfig * config,
   gimp_procedure_dialog_fill (dialog, "main-box", NULL);
 
   run = gimp_procedure_dialog_run (dialog);
+  /* the config outlives the dialog */
+  g_signal_handlers_disconnect_by_data (config, &data);
   gtk_widget_destroy (GTK_WIDGET (dialog));
 
   g_list_free_full (controls, g_free);
