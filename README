@@ -13,7 +13,7 @@ What is new in the GIMP 3 version (see ChangeLog for details):
 
 - Runs in GIMP 3.0 and newer.
 - 16-bit and floating point images are denoised at full precision. Floating
-  point images keep values above 1.
+  point images keep values outside of [0,1].
 - All settings can be passed from scripts, and GIMP remembers the last used
   ones.
 - Several bug fixes.
