@@ -95,8 +95,19 @@ denoise (GimpDrawable * drawable, GimpPreview * preview,
   /* the displayed channel in single channel preview, -1 = all */
   pch = preview ? settings->preview_channel - 1 : -1;
 
-  /* allocate one plane per channel plus two for the wavelet transform */
-  if (!g_size_checked_mul (&size, width, height)
+  /* count the channels to denoise for the progress bar */
+  channels_to_denoise = 0;
+  for (c = 0; c < channels; c++)
+    if (settings->thresholds[settings_index (channels, c)] > 0)
+      channels_to_denoise++;
+
+  /* nothing to do: leave the drawable exactly as it is */
+  if (!preview && channels_to_denoise == 0)
+    return TRUE;
+
+  /* allocate one plane per channel plus two for the wavelet transform;
+     the colour conversions and the wavelet code count pixels in int */
+  if (!g_size_checked_mul (&size, width, height) || size > G_MAXINT
       || !g_size_checked_mul (&bufsize, size, sizeof (float)))
     {
       g_set_error (error, GIMP_PLUG_IN_ERROR, 0,
@@ -121,11 +132,6 @@ denoise (GimpDrawable * drawable, GimpPreview * preview,
       return FALSE;
     }
 
-  /* count the channels to denoise for the progress bar */
-  channels_to_denoise = 0;
-  for (c = 0; c < channels; c++)
-    if (settings->thresholds[settings_index (channels, c)] > 0)
-      channels_to_denoise++;
   progress_step = (1.0 - PROGRESS_READ - PROGRESS_WRITE)
     / MAX2 (channels_to_denoise, 1);
 
